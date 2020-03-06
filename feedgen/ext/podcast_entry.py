@@ -30,6 +30,8 @@ class PodcastEntryExtension(BaseEntryExtension):
         self.__itunes_order = None
         self.__itunes_subtitle = None
         self.__itunes_summary = None
+        self.__itunes_season = None
+        self.__itunes_episode = None
 
     def extend_rss(self, entry):
         '''Add additional fields to an RSS item.
@@ -77,6 +79,14 @@ class PodcastEntryExtension(BaseEntryExtension):
         if self.__itunes_summary:
             summary = xml_elem('{%s}summary' % ITUNES_NS, entry)
             summary.text = self.__itunes_summary
+
+        if self.__itunes_season:
+            season = xml_elem('{%s}season' % ITUNES_NS, entry)
+            season.text = self.__itunes_season
+
+        if self.__itunes_episode:
+            episode = xml_elem('{%s}episode' % ITUNES_NS, entry)
+            episode.text = self.__itunes_episode
         return entry
 
     def itunes_author(self, itunes_author=None):
@@ -242,3 +252,13 @@ class PodcastEntryExtension(BaseEntryExtension):
         if itunes_summary is not None:
             self.__itunes_summary = itunes_summary
         return self.__itunes_summary
+
+    def itunes_season(self, itunes_season=None):
+        if itunes_season is not None:
+            self.__itunes_season = itunes_season
+        return self.__itunes_season
+
+    def itunes_episode(self, itunes_episode=None):
+        if itunes_episode is not None:
+            self.__itunes_episode = itunes_episode
+        return self.__itunes_episode
