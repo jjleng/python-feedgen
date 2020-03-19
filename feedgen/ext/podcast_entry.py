@@ -137,7 +137,9 @@ class PodcastEntryExtension(BaseEntryExtension):
         :returns: Image of the podcast.
         '''
         if itunes_image is not None:
-            if itunes_image.endswith('.jpg') or itunes_image.endswith('.png'):
+            if (itunes_image.lower().endswith('.jpg') or
+                itunes_image.lower().endswith('.png') or
+                itunes_image.lower().endswith('.jpeg')):
                 self.__itunes_image = itunes_image
             else:
                 raise ValueError('Image file must be png or jpg')
